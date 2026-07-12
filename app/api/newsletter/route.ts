@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 
 const allowedStates = new Set(["FL", "GA", "SC", "TN"]);
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const successMessage = "Thanks — check your inbox to confirm your signup.";
+const successMessage = "Thanks — you’re on the list.";
 
 type NewsletterRequest = {
   email?: unknown;
@@ -47,6 +47,43 @@ function getSubscriberHash(email: string) {
 
 function getAuthHeader(apiKey: string) {
   return `Basic ${Buffer.from(`popcult:${apiKey}`).toString("base64")}`;
+}
+
+async function upsertMember({
+  email,
+  firstName,
+  memberUrl,
+  headers,
+}: {
+  email: string;
+  firstName: string;
+  memberUrl: string;
+  headers: Record<string, string>;
+}) {
+  const body = {
+    email_address: email,
+    status_if_new: "subscribed",
+    ...(firstName ? { merge_fields: { FNAME: firstName } } : {}),
+  };
+
+  const response = await fetch(memberUrl, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+  });
+
+  if (response.ok || !firstName) {
+    return response;
+  }
+
+  return fetch(memberUrl, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({
+      email_address: email,
+      status_if_new: "subscribed",
+    }),
+  });
 }
 
 export async function POST(request: Request) {
@@ -117,14 +154,11 @@ export async function POST(request: Request) {
   let memberResponse: Response;
 
   try {
-    memberResponse = await fetch(memberUrl, {
-      method: "PUT",
+    memberResponse = await upsertMember({
+      email,
+      firstName,
+      memberUrl,
       headers,
-      body: JSON.stringify({
-        email_address: email,
-        status_if_new: "pending",
-        merge_fields: firstName ? { FNAME: firstName } : {},
-      }),
     });
   } catch {
     return jsonResponse(

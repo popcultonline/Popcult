@@ -62,7 +62,7 @@ export function NewsletterSignup() {
       setStatus("success");
       setSubmittedEmail(email);
       setMessage(
-        data.message || "Thanks — check your inbox to confirm your signup."
+        data.message || "Thanks — you’re on the list."
       );
       trackEvent(
         "newsletter_signup",

@@ -1,4 +1,5 @@
 import Script from "next/script";
+import { GoogleAnalyticsPageViews } from "@/components/analytics/GoogleAnalyticsPageViews";
 
 export function GoogleAnalytics({
   measurementId,
@@ -21,6 +22,7 @@ export function GoogleAnalytics({
           gtag('config', ${JSON.stringify(measurementId)});
         `}
       </Script>
+      <GoogleAnalyticsPageViews measurementId={measurementId} />
     </>
   );
 }

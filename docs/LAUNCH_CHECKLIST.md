@@ -80,11 +80,11 @@ Never prefix Mailchimp credentials with `NEXT_PUBLIC_`.
   - `Website Signup`
   - `Preferred State: FL`, `Preferred State: GA`, `Preferred State: SC`, or `Preferred State: TN`
 
-## 8. Double opt-in
+## 8. Opt-in behavior
 
-- The website sends new contacts to Mailchimp with `status_if_new: pending`, which prepares the signup for confirmation rather than silently adding a fully subscribed contact.
-- The client controls the exact double opt-in behavior, confirmation email, and signup settings in Mailchimp.
-- Before launch, send a test signup and confirm the expected Mailchimp confirmation flow.
+- The website sends intentional newsletter signups to Mailchimp with `status_if_new: subscribed` for single opt-in behavior.
+- If the client later wants double opt-in, change the route to use `status_if_new: pending` and confirm the Mailchimp confirmation email flow.
+- Before launch, send a test signup and confirm the expected subscriber status in Mailchimp.
 
 ## 9. Mailchimp domain authentication
 
