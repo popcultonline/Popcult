@@ -1,17 +1,46 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { getSiteUrl, siteDescription, siteName } from "@/lib/site";
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Pop Cult | Find Your Next Favorite",
-    template: "%s | Pop Cult",
+    default: "Pop Cult | Find Your Next Favorite Thing",
+    template: `%s | ${siteName}`,
   },
-  description:
-    "A regional pop culture retailer for anime, Sanrio, Gundam, figures, plush, collectibles, gifts, and more.",
+  description: siteDescription,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Pop Cult | Find Your Next Favorite Thing",
+    description: siteDescription,
+    url: "/",
+    siteName,
+    images: [
+      {
+        url: "/brand/popcult-logo-final.jpg",
+        alt: "Pop Cult logo",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pop Cult | Find Your Next Favorite Thing",
+    description: siteDescription,
+    images: ["/brand/popcult-logo-final.jpg"],
+  },
   icons: {
-    icon: "/brand/general-logo.jpg",
+    icon: "/brand/logofavicon.png",
+    apple: "/brand/logofavicon.png",
   },
 };
 
@@ -40,6 +69,9 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <Analytics />
+        <SpeedInsights />
+        <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
       </body>
     </html>
   );

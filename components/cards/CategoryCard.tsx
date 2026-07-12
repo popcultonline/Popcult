@@ -1,9 +1,11 @@
 import Image from "next/image";
 import type { Category } from "@/data/categories";
+import { CategoryViewTracker } from "@/components/analytics/CategoryViewTracker";
 
 export function CategoryCard({ category }: { category: Category }) {
   return (
     <article className="group relative isolate aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-[#171717] shadow-sm ring-1 ring-black/10 transition-transform duration-300 hover:-translate-y-1">
+      <CategoryViewTracker category={category.name} />
       <Image
         src={category.image}
         alt={category.imageAlt}

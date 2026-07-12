@@ -10,6 +10,15 @@ export const metadata: Metadata = {
   title: "Locations",
   description:
     "Find 11 Pop Cult and Character World stores across Florida, Georgia, South Carolina, and Tennessee.",
+  alternates: {
+    canonical: "/locations",
+  },
+  openGraph: {
+    title: "Pop Cult Locations",
+    description:
+      "Find 11 Pop Cult and Character World stores across Florida, Georgia, South Carolina, and Tennessee.",
+    url: "/locations",
+  },
 };
 
 export default function LocationsPage() {

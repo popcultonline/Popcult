@@ -4,6 +4,7 @@ import { MapPin, Menu } from "lucide-react";
 import { navigation } from "@/data/navigation";
 import { Button } from "@/components/ui/button";
 import { ScrollProgress } from "@/components/site/ScrollProgress";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 export function Header() {
   return (
@@ -43,10 +44,14 @@ export function Header() {
           asChild
           className="hidden h-11 rounded-full bg-[#ffe200] px-5 font-black text-black hover:bg-[#f2d600] md:inline-flex"
         >
-          <Link href="/locations">
+          <TrackedLink
+            href="/locations"
+            eventName="find_store_click"
+            eventProperties={{ placement: "header" }}
+          >
             <MapPin aria-hidden="true" className="size-4" />
             Find a Store
-          </Link>
+          </TrackedLink>
         </Button>
 
         <details className="group relative md:hidden">
@@ -67,13 +72,15 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
-            <Link
+            <TrackedLink
               href="/locations"
+              eventName="find_store_click"
+              eventProperties={{ placement: "mobile_header" }}
               className="mt-1 flex items-center gap-2 rounded-xl bg-[#ffe200] px-4 py-3 text-sm font-black text-black"
             >
               <MapPin aria-hidden="true" className="size-4" />
               Find a Store
-            </Link>
+            </TrackedLink>
           </nav>
         </details>
       </div>

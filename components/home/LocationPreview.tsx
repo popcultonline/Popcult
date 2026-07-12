@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { locations, stateGroups } from "@/data/locations";
 import { LocationCard } from "@/components/cards/LocationCard";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 const featuredLocationIds = [
   "orlando-florida-mall",
@@ -49,10 +49,14 @@ export function LocationPreview() {
               size="lg"
               className="mt-8 rounded-full bg-[#171717] font-bold text-white hover:bg-primary"
             >
-              <Link href="/locations">
+              <TrackedLink
+                href="/locations"
+                eventName="find_store_click"
+                eventProperties={{ placement: "location_preview" }}
+              >
                 View all locations
                 <ArrowRight aria-hidden="true" className="size-4" />
-              </Link>
+              </TrackedLink>
             </Button>
           </div>
 

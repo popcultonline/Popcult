@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ArrowRight, Heart, Sparkles, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 export const metadata: Metadata = {
   title: "About",
   description:
     "Meet Pop Cult / Character World, a regional pop culture retailer built around discovery, fandom, and physical stores.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Pop Cult",
+    description:
+      "Meet Pop Cult / Character World, a regional pop culture retailer built around discovery, fandom, and physical stores.",
+    url: "/about",
+  },
 };
 
 const principles = [
@@ -102,10 +111,14 @@ export default function AboutPage() {
               mix can vary from store to store, which is part of the fun.
             </p>
             <Button asChild size="lg" className="mt-8 rounded-full">
-              <Link href="/locations">
+              <TrackedLink
+                href="/locations"
+                eventName="find_store_click"
+                eventProperties={{ placement: "about_page" }}
+              >
                 Find your nearest store
                 <ArrowRight aria-hidden="true" className="size-4" />
-              </Link>
+              </TrackedLink>
             </Button>
           </div>
         </div>

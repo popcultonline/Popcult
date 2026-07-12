@@ -4,6 +4,7 @@ import { ContactCTA } from "@/components/home/ContactCTA";
 import { CredibilityStrip } from "@/components/home/CredibilityStrip";
 import { Hero } from "@/components/home/Hero";
 import { LocationPreview } from "@/components/home/LocationPreview";
+import { NewsletterSignup } from "@/components/newsletter/NewsletterSignup";
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
         </div>
       </div>
       <AboutPreview />
+      <NewsletterSignup />
       <ContactCTA />
     </>
   );

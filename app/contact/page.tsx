@@ -3,11 +3,21 @@ import Link from "next/link";
 import { ArrowRight, Building2, HelpCircle, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
     "Contact Pop Cult / Character World about store questions, general inquiries, or partnerships.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Contact Pop Cult",
+    description:
+      "Contact Pop Cult / Character World about store questions, general inquiries, or partnerships.",
+    url: "/contact",
+  },
 };
 
 const contactReasons = [
@@ -100,7 +110,13 @@ export default function ContactPage() {
           local help.
         </p>
         <Button asChild size="lg" className="mt-8 rounded-full">
-          <Link href="/locations">Find a store</Link>
+          <TrackedLink
+            href="/locations"
+            eventName="find_store_click"
+            eventProperties={{ placement: "contact_page" }}
+          >
+            Find a store
+          </TrackedLink>
         </Button>
       </Section>
     </>

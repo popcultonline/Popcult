@@ -4,6 +4,7 @@ import { locationCount, stateCount } from "@/data/locations";
 import { HeroSpotlightCarousel } from "@/components/home/HeroSpotlightCarousel";
 import { Button } from "@/components/ui/button";
 import { SparklesText } from "@/components/ui/SparklesText";
+import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 export function Hero() {
   return (
@@ -35,10 +36,14 @@ export function Hero() {
               size="lg"
               className="h-13 rounded-full bg-[#ffe200] px-7 font-black text-black shadow-[0_4px_0_#171717] hover:bg-[#f2d600]"
             >
-              <Link href="/locations">
+              <TrackedLink
+                href="/locations"
+                eventName="find_store_click"
+                eventProperties={{ placement: "hero" }}
+              >
                 <MapPin aria-hidden="true" className="size-4" />
                 Find a Store
-              </Link>
+              </TrackedLink>
             </Button>
             <Button
               asChild
