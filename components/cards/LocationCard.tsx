@@ -1,6 +1,8 @@
-import { ExternalLink, MapPin, Phone } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ExternalLink, MapPin, Phone } from "lucide-react";
 import {
   getDirectionsUrl,
+  getLocationPath,
   type StoreLocation,
 } from "@/data/locations";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,6 +10,7 @@ import { TrackedLink } from "@/components/analytics/TrackedLink";
 
 export function LocationCard({ location }: { location: StoreLocation }) {
   const directionsUrl = getDirectionsUrl(location);
+  const locationPath = getLocationPath(location);
   const phoneHref = `tel:${location.phone.replace(/[^\d+]/g, "")}`;
 
   return (
@@ -55,7 +58,15 @@ export function LocationCard({ location }: { location: StoreLocation }) {
           </div>
         </address>
 
-        <div className="mt-auto pt-6">
+        <div className="mt-auto flex flex-wrap gap-2 pt-6">
+          <Link
+            href={locationPath}
+            className="inline-flex items-center gap-2 rounded-full bg-[#171717] px-4 py-2.5 text-sm font-black text-white hover:bg-primary"
+            aria-label={`View details for ${location.brand} ${location.city}`}
+          >
+            Store Details
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </Link>
           {directionsUrl ? (
             <TrackedLink
               href={directionsUrl}

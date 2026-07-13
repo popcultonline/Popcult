@@ -14,6 +14,17 @@ export type StoreLocation = {
   directionsQuery?: string;
 };
 
+const stateSlugsByCode: Record<StateCode, string> = {
+  FL: "florida",
+  GA: "georgia",
+  SC: "south-carolina",
+  TN: "tennessee",
+};
+
+const locationSlugOverrides: Record<string, string> = {
+  "tampa-citrus-park": "citrus-park",
+};
+
 export const locations: StoreLocation[] = [
   {
     id: "orlando-florida-mall",
@@ -151,6 +162,59 @@ export const stateGroups = [
 
 export const locationCount = locations.length;
 export const stateCount = stateGroups.length;
+
+export function slugifyLocationSegment(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function isKnownLocationValue(value?: string) {
+  return Boolean(value && value.trim() && value !== "Details coming soon");
+}
+
+export function getStateSlug(location: StoreLocation) {
+  return stateSlugsByCode[location.stateCode];
+}
+
+export function getLocationSlug(location: StoreLocation) {
+  return locationSlugOverrides[location.id] ?? slugifyLocationSegment(location.city);
+}
+
+export function getLocationPath(location: StoreLocation) {
+  return `/locations/${getStateSlug(location)}/${getLocationSlug(location)}`;
+}
+
+export function getStatePath(group: { code: StateCode }) {
+  return `/locations/${stateSlugsByCode[group.code]}`;
+}
+
+export function getStateGroupBySlug(slug: string) {
+  return stateGroups.find((group) => stateSlugsByCode[group.code] === slug);
+}
+
+export function getLocationByRoute(stateSlug: string, locationSlug: string) {
+  return locations.find(
+    (location) =>
+      getStateSlug(location) === stateSlug &&
+      getLocationSlug(location) === locationSlug
+  );
+}
+
+export function getLocationStaticParams() {
+  return locations.map((location) => ({
+    state: getStateSlug(location),
+    slug: getLocationSlug(location),
+  }));
+}
+
+export function getStateStaticParams() {
+  return stateGroups.map((group) => ({
+    state: stateSlugsByCode[group.code],
+  }));
+}
 
 export function getDirectionsUrl(location: StoreLocation) {
   if (!location.directionsQuery) return null;
