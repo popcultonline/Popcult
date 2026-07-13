@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAbsoluteUrl, siteRoutes } from "@/lib/site";
+import { getAbsoluteUrl, siteLastReviewed, siteRoutes } from "@/lib/site";
 import {
   getLocationPath,
   getStatePath,
@@ -8,7 +8,7 @@ import {
 } from "@/data/locations";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  const lastModified = new Date(siteLastReviewed);
   const staticRoutes = siteRoutes.map((route) => ({
     url: getAbsoluteUrl(route.path),
     lastModified,
@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
   const storeRoutes = locations.map((location) => ({
     url: getAbsoluteUrl(getLocationPath(location)),
-    lastModified,
+    lastModified: new Date(location.lastReviewed),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));

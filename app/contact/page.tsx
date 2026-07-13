@@ -1,22 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Building2, HelpCircle, MapPin } from "lucide-react";
+import { ArrowRight, HelpCircle, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { NewsletterSignup } from "@/components/newsletter/NewsletterSignup";
+import { brandOpenGraphImages } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Pop Cult / Character World about store questions, general inquiries, or partnerships.",
+    "Find the right Pop Cult or Character World store for directions, phone numbers, hours, shopping questions, and email updates.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
     title: "Contact Pop Cult",
     description:
-      "Contact Pop Cult / Character World about store questions, general inquiries, or partnerships.",
+      "Find the right Pop Cult or Character World store for directions, phone numbers, hours, shopping questions, and email updates.",
     url: "/contact",
+    images: brandOpenGraphImages,
   },
 };
 
@@ -24,22 +27,26 @@ const contactReasons = [
   {
     icon: MapPin,
     title: "Store questions",
-    text: "For hours, directions, or inventory questions, start with our locations list.",
+    text: "For hours, directions, phone numbers, and local store questions, start with the locations list.",
     link: "/locations",
     label: "Browse locations",
     color: "bg-primary text-white",
   },
   {
-    icon: Building2,
-    title: "Business & partnerships",
-    text: "Have a partnership, leasing, or business inquiry? Contact details are coming soon.",
-    color: "bg-[#ffe200]",
+    icon: HelpCircle,
+    title: "Shopping questions",
+    text: "Inventory changes by store, so your nearest location is the best current point of contact before a special trip.",
+    link: "/locations",
+    label: "Find nearest store",
+    color: "bg-[#171717] text-[#ffe200]",
   },
   {
-    icon: HelpCircle,
-    title: "General help",
-    text: "Need help with something else? General contact details are being confirmed.",
-    color: "bg-[#171717] text-[#ffe200]",
+    icon: Mail,
+    title: "Email updates",
+    text: "Join the Pop Cult email list for new finds, store updates, and events sent occasionally.",
+    link: "#newsletter",
+    label: "Join the email list",
+    color: "bg-[#ffe200]",
   },
 ];
 
@@ -55,8 +62,9 @@ export default function ContactPage() {
             Let&apos;s get you to the right place.
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
-            Whether you have a store question or a bigger idea, here is where
-            to start.
+            Pick the path that matches what you need. Store teams are the best
+            source for local hours, directions, and what is currently available
+            in person.
           </p>
         </div>
       </Section>
@@ -89,11 +97,7 @@ export default function ContactPage() {
                       {label}
                       <ArrowRight aria-hidden="true" className="size-4" />
                     </Link>
-                  ) : (
-                    <p className="mt-auto pt-8 text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
-                      Details coming soon
-                    </p>
-                  )}
+                  ) : null}
                 </article>
               )
             )}
@@ -119,6 +123,8 @@ export default function ContactPage() {
           </TrackedLink>
         </Button>
       </Section>
+
+      <NewsletterSignup source="contact_page" />
     </>
   );
 }

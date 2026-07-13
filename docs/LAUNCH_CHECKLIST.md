@@ -1,155 +1,207 @@
-# Pop Cult / Character World Launch Checklist
+# Pop Cult / Character World Post-Launch Checklist
 
-This project is prepared for a Vercel launch, analytics, newsletter capture, and a future Squarespace-to-Vercel domain cutover. Do not change DNS until the client has reviewed the checklist and confirmed account access.
+This checklist reflects the current production state for `https://popcult.online`. It is no longer a pre-launch import, deployment, or DNS-cutover checklist.
 
-## 1. Vercel deployment
+## Completed infrastructure
 
-- Import the repository into the client’s Vercel account.
-- Confirm the project framework is detected as Next.js.
-- Use the default install/build commands unless the project owner changes package managers:
-  - Install: `npm install`
-  - Build: `npm run build`
-- Add the environment variables listed below before the production deployment.
-- Deploy a preview first and review every public route:
+- Repository transferred to the client-owned `popcultonline` GitHub organization/account.
+- Client-owned Vercel project connected to the GitHub repository.
+- Production domain `popcult.online` connected to Vercel.
+- DNS web records cut over to Vercel.
+- `NEXT_PUBLIC_SITE_URL` configured as `https://popcult.online`.
+- Vercel environment variables configured:
+  - `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+  - `MAILCHIMP_API_KEY`
+  - `MAILCHIMP_SERVER_PREFIX`
+  - `MAILCHIMP_AUDIENCE_ID`
+- Vercel Web Analytics code installed and mounted.
+- Vercel Speed Insights code installed and mounted.
+- GA4 property and web stream created.
+- Search Console property created and DNS verification added.
+- Mailchimp account, audience, single opt-in behavior, website tags, and API integration configured.
+- Generated routes include:
+  - Homepage
+  - About
+  - Contact
+  - Locations index
+  - Four state location pages
+  - Eleven canonical store pages
+  - Sitemap
+  - Robots
+
+## Verify now
+
+### Production routes
+
+- Confirm these canonical routes return `200` on `https://popcult.online`:
   - `/`
-  - `/locations`
   - `/about`
   - `/contact`
-  - `/sitemap.xml`
-  - `/robots.txt`
+  - `/locations`
+  - `/locations/florida`
+  - `/locations/georgia`
+  - `/locations/south-carolina`
+  - `/locations/tennessee`
+  - `/locations/florida/orlando`
+  - `/locations/florida/citrus-park`
+  - `/locations/florida/clearwater`
+  - `/locations/florida/brandon`
+  - `/locations/florida/lutz`
+  - `/locations/georgia/alpharetta`
+  - `/locations/georgia/buford`
+  - `/locations/south-carolina/greenville`
+  - `/locations/tennessee/nashville`
+  - `/locations/tennessee/knoxville`
+  - `/locations/tennessee/chattanooga`
 
-## 2. Required environment variables
+### Legacy redirects
 
-Add these in Vercel Project Settings → Environment Variables.
+- Confirm these legacy paths redirect once to their canonical destinations:
+  - `/locations/tenesse/knoxville` → `/locations/tennessee/knoxville`
+  - `/locations/southcarolina` → `/locations/south-carolina`
+  - `/locations/southcarolina/greenville` → `/locations/south-carolina/greenville`
+  - `/locations/florida/citruspark` → `/locations/florida/citrus-park`
+  - `/locations/georgia/characterworld` → `/locations/georgia/buford`
+  - `/locations/georgia/character-world` → `/locations/georgia/buford`
+  - `/locations/georgia/mall-of-georgia` → `/locations/georgia/buford`
+  - `/locations/florida/countryside` → `/locations/florida/clearwater`
+  - `/locations/florida/tampa-premium-outlets` → `/locations/florida/lutz`
+  - `/locations/georgia/north-point` → `/locations/georgia/alpharetta`
+  - `/locations/south-carolina/haywood` → `/locations/south-carolina/greenville`
+  - `/locations/tennessee/hamilton-place` → `/locations/tennessee/chattanooga`
+  - `/our-locations` → `/locations`
+  - `/our-locations/florida` → `/locations/florida`
+  - `/our-locations/georgia` → `/locations/georgia`
+  - `/our-locations/southcarolina` → `/locations/south-carolina`
+  - `/our-locations/south-carolina` → `/locations/south-carolina`
+  - `/our-locations/tennessee` → `/locations/tennessee`
 
-### Public
+### SEO and indexing
 
-- `NEXT_PUBLIC_SITE_URL` — the production origin, for example `https://example.com`
-- `NEXT_PUBLIC_GA_MEASUREMENT_ID` — GA4 measurement ID, for example `G-XXXXXXXXXX`
+- Confirm `/sitemap.xml` returns `200` and lists only canonical production URLs.
+- Confirm `/robots.txt` returns `200` and points to `https://popcult.online/sitemap.xml`.
+- Submit or re-submit `https://popcult.online/sitemap.xml` in Search Console.
+- Inspect at least these URLs in Search Console:
+  - `https://popcult.online/`
+  - `https://popcult.online/locations`
+  - One Florida store page
+  - One Tennessee store page
+- Confirm no temporary `vercel.app` URL appears in page metadata, sitemap, or robots output.
 
-### Server-side only
+### Analytics
 
-- `MAILCHIMP_API_KEY`
-- `MAILCHIMP_SERVER_PREFIX` — the Mailchimp data center prefix, for example `us21`
-- `MAILCHIMP_AUDIENCE_ID`
-
-Never prefix Mailchimp credentials with `NEXT_PUBLIC_`.
-
-## 3. Vercel Web Analytics
-
-- Code is installed via `@vercel/analytics`.
-- Confirm Vercel Web Analytics is enabled in Vercel Project Settings → Analytics.
-- After launch, verify page views and custom events are appearing:
-  - `newsletter_signup`
+- In GA4 Realtime, confirm a page view appears for:
+  - Homepage load
+  - Client-side navigation to `/locations`
+  - Client-side navigation to a store page
+- In GA4 Realtime and Vercel Analytics, confirm these custom events after intentional actions:
   - `find_store_click`
   - `directions_click`
   - `phone_click`
   - `category_view`
+  - `newsletter_signup`
+- Confirm `directions_click` includes:
+  - `location_id`
+  - `location_city`
+  - `state`
+  - `placement`
+- Confirm `phone_click` includes:
+  - `location_id`
+  - `location_city`
+  - `state`
+  - `placement`
+  - `contact_type`
+- Confirm Chattanooga phone clicks use `contact_type: mall_information`.
 
-## 4. Vercel Speed Insights
+### Mailchimp
 
-- Code is installed via `@vercel/speed-insights`.
-- Confirm Speed Insights is enabled in Vercel Project Settings → Speed Insights.
-- Review production traffic after launch for LCP, CLS, and INP issues.
+- Submit one client-approved test email through the live newsletter form.
+- Confirm the subscriber appears in Mailchimp as subscribed, not pending.
+- Confirm the `Website Signup` tag is applied.
+- Confirm preferred-state tags work when selected:
+  - `Preferred State: FL`
+  - `Preferred State: GA`
+  - `Preferred State: SC`
+  - `Preferred State: TN`
+- Confirm first name maps to `FNAME` when the merge field exists.
+- Confirm the form shows a success state and no Mailchimp internals are exposed to the visitor.
 
-## 5. GA4 setup
+### Content and UX
 
-- Create or confirm the GA4 property in Google Analytics.
-- Create a Web data stream for the production domain.
-- Copy the Measurement ID into `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
-- Do not hardcode the measurement ID in the codebase.
-- After deployment, confirm:
-  - Real-time page views are appearing.
-  - Custom events are appearing with the same event names used for Vercel Analytics.
+- Review the site on mobile and desktop.
+- Keyboard-test the header, mobile menu, hero carousel controls, category cards, location cards, contact links, and newsletter form.
+- Confirm visible focus states are easy to see.
+- Confirm every store page shows either `Store Hours` or `Regular Mall Hours`.
+- Confirm provisional locations still show `Regular Mall Hours` until the client confirms store-specific hours.
+- Confirm no public copy says “coming soon,” “TBD,” “placeholder,” or equivalent unfinished language.
 
-## 6. Google Search Console
+### Current client data confirmations
 
-- Add the production domain property in Search Console.
-- Prefer DNS verification if the client controls DNS.
-- Submit the generated sitemap: `/sitemap.xml`.
-- Confirm `/robots.txt` is reachable.
-- Check coverage after launch and monitor for crawl or indexing issues.
+- Knoxville phone conflict: current site uses `(865) 253-7363`; previous repository value was `(865) 253-7228`.
+- Chattanooga direct-phone uncertainty: current site labels `(423) 855-5282` as `Hamilton Place information`, not a direct store phone.
+- Citrus Park phone history: current site uses `(813) 792-7070`; previously surfaced conflicting value was `(706) 921-9726`.
+- Brandon phone change: current site uses `(813) 699-2842`; previous repository value was `(813) 643-5528`.
+- Provisional hours remain for Citrus Park, Lutz, Alpharetta, and Chattanooga.
+- Orlando Saturday closing time is currently listed as `9 PM`; reconfirm if the client wants extra certainty.
+- No general business-inquiry email is published because no verified destination has been provided.
+- Character World at Mall of Georgia is preserved as `Character World`; do not publicly call it “A Pop Cult store” unless the client confirms that wording.
 
-## 7. Mailchimp audience setup
+## Monitor after launch
 
-- Confirm the correct Mailchimp audience/list with the client.
-- Copy the Audience ID into `MAILCHIMP_AUDIENCE_ID`.
-- Confirm the Mailchimp server prefix from the account URL or API key suffix.
-- Confirm default merge fields include `FNAME` if first-name capture should be stored.
-- The website applies Mailchimp tags when practical:
-  - `Website Signup`
-  - `Preferred State: FL`, `Preferred State: GA`, `Preferred State: SC`, or `Preferred State: TN`
+- Check Vercel deployment status after each production push.
+- Review Vercel Web Analytics for traffic and custom-event continuity.
+- Review Vercel Speed Insights for LCP, CLS, and INP trends after real traffic accumulates.
+- Review GA4 Realtime and Events after each content or analytics change.
+- Check Search Console indexing, sitemap processing, crawl errors, and page indexing status.
+- Check Mailchimp signup volume, tags, and duplicate/existing subscriber behavior.
+- Spot-check Maps and phone links after store data changes.
+- Re-run local validation before each production deployment:
+  - `npm run lint`
+  - `npm run build`
+  - `git diff --check`
 
-## 8. Opt-in behavior
+## Future optional work
 
-- The website sends intentional newsletter signups to Mailchimp with `status_if_new: subscribed` for single opt-in behavior.
-- If the client later wants double opt-in, change the route to use `status_if_new: pending` and confirm the Mailchimp confirmation email flow.
-- Before launch, send a test signup and confirm the expected subscriber status in Mailchimp.
+- Add a verified business-inquiry email or contact workflow if the client provides one.
+- Add confirmed direct Chattanooga phone if available.
+- Convert provisional mall hours to verified store hours after client confirmation.
+- Add store-specific images only when real approved photography is available.
+- Add Search Console HTML verification metadata only if DNS verification becomes insufficient.
+- Add richer location content if the client provides confirmed suite numbers, holiday hours, or store-specific services.
+- Consider a lightweight visual regression check after the design stabilizes.
 
-## 9. Mailchimp domain authentication
+## Emergency rollback
 
-- In Mailchimp, authenticate the sending domain before sending campaigns.
-- Add Mailchimp’s required DNS records only after confirming they do not conflict with existing email records.
-- Verify SPF/DKIM alignment in Mailchimp before the first campaign.
+Use this section only if the production domain or deployment has a serious issue.
 
-## 10. Custom domain configuration
+### Vercel rollback
 
-- Add the production domain in Vercel Project Settings → Domains.
-- Confirm whether the client wants apex, `www`, or both.
-- Choose the canonical version and set redirects in Vercel if needed.
-- Set `NEXT_PUBLIC_SITE_URL` to the canonical production origin.
+1. In Vercel, open the project deployments list.
+2. Promote the last known-good deployment.
+3. Confirm `https://popcult.online`, `/locations`, `/sitemap.xml`, and `/robots.txt` return successfully.
+4. Re-check GA4 page views and newsletter form behavior after rollback.
 
-## 11. Preserve MX/TXT email records
+### DNS rollback
 
-Before editing DNS, export or screenshot existing Squarespace/domain DNS records.
+If DNS web records must be reverted:
 
-Preserve:
+1. Locate the DNS screenshots or export taken before the Vercel cutover.
+2. Revert only the web records needed to restore the previous site.
+3. Preserve all email-related records:
+   - MX records
+   - SPF TXT records
+   - DKIM TXT/CNAME records
+   - DMARC TXT records
+   - Google Workspace or Microsoft verification records
+   - Mailchimp authentication records
+   - Search Console DNS verification records, unless intentionally replacing verification
+4. Do not replace nameservers unless the client explicitly approves and email impact has been checked.
+5. Confirm email delivery is unaffected.
+6. Confirm the domain resolves to the intended rollback target.
+7. Document the changed values, timestamps, screenshots, and reason for rollback.
 
-- MX records for email hosting.
-- SPF TXT records.
-- DKIM TXT/CNAME records.
-- DMARC TXT records.
-- Google Workspace or Microsoft verification records.
-- Mailchimp authentication records if already present.
+### Mailchimp rollback
 
-Do not replace nameservers unless the client explicitly approves and email impact has been checked.
-
-## 12. Squarespace DNS cutover
-
-Recommended cutover path:
-
-1. Confirm the Vercel production deployment is healthy.
-2. Confirm Vercel has the custom domain added and shows the expected DNS target.
-3. Lower DNS TTL ahead of the planned cutover if the current DNS provider allows it.
-4. In Squarespace or the current DNS host, update only the web records needed for Vercel.
-5. Preserve all email-related MX/TXT/CNAME records.
-6. Wait for DNS propagation.
-7. Confirm the domain resolves to Vercel.
-8. Confirm HTTPS certificate issuance in Vercel.
-9. Check all public routes, sitemap, robots, analytics, and newsletter signup.
-
-Do not perform this migration from the codebase. It requires client account access and an approved launch window.
-
-## 13. Rollback process
-
-If the launch has a domain issue:
-
-1. Revert the changed web DNS records to their pre-launch values.
-2. Keep email records unchanged.
-3. Confirm the old Squarespace site resolves again.
-4. Leave the Vercel preview deployment available for debugging.
-5. Document the failed DNS values, screenshots, and timestamps before retrying.
-
-## 14. Post-launch verification
-
-- Visit the homepage and every nav route on desktop and mobile.
-- Confirm the header, footer, location cards, and newsletter form are visually intact.
-- Test keyboard navigation and visible focus states.
-- Submit a newsletter test with a client-approved test email.
-- Confirm the contact appears in Mailchimp with the expected status/tags.
-- Click a store directions link and confirm analytics receives `directions_click`.
-- Tap a phone link on mobile and confirm analytics receives `phone_click`.
-- Click “Find a Store” and confirm analytics receives `find_store_click`.
-- Confirm category impressions are tracking as `category_view`.
-- Confirm no public verification placeholder language is visible.
-- Confirm `/sitemap.xml` and `/robots.txt` use the production domain after `NEXT_PUBLIC_SITE_URL` is set.
+- If newsletter signups fail, temporarily remove or hide the newsletter section only after confirming the failure is production-impacting.
+- Do not expose API keys in debugging output.
+- Do not change opt-in behavior from single opt-in to double opt-in without client approval.

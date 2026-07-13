@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import { trackEvent } from "@/lib/analytics";
 
 type SignupStatus = "idle" | "loading" | "success" | "error";
+type NewsletterSignupProps = {
+  source?: "homepage" | "contact_page";
+};
 
 const preferredStates = [
   { label: "Florida", value: "FL" },
@@ -14,7 +17,9 @@ const preferredStates = [
   { label: "Tennessee", value: "TN" },
 ] as const;
 
-export function NewsletterSignup() {
+export function NewsletterSignup({
+  source = "homepage",
+}: NewsletterSignupProps) {
   const formId = useId();
   const [status, setStatus] = useState<SignupStatus>("idle");
   const [message, setMessage] = useState("");
@@ -67,7 +72,8 @@ export function NewsletterSignup() {
       trackEvent(
         "newsletter_signup",
         {
-          source: "homepage",
+          source,
+          placement: source,
           preferred_state:
             String(formData.get("preferredState") ?? "").trim() || undefined,
         },
@@ -88,6 +94,7 @@ export function NewsletterSignup() {
 
   return (
     <section
+      id="newsletter"
       aria-labelledby={`${formId}-heading`}
       className="bg-[#171717] text-white"
     >

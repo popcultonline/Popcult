@@ -9,6 +9,7 @@ import {
 } from "@/data/locations";
 import { LocationCard } from "@/components/cards/LocationCard";
 import { Section } from "@/components/site/Section";
+import { brandOpenGraphImages } from "@/lib/site";
 
 type StateLocationsPageProps = {
   params: Promise<{
@@ -47,6 +48,7 @@ export async function generateMetadata({
       title,
       description,
       url: getStatePath(group),
+      images: brandOpenGraphImages,
     },
   };
 }
@@ -84,6 +86,9 @@ export default async function StateLocationsPage({
 
       <div className="bg-[#eee8f6]">
         <Section>
+          <h2 id={`stores-${group.code}`} className="sr-only">
+            Stores in {group.state}
+          </h2>
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {group.locations.map((location) => (
               <LocationCard key={location.id} location={location} />

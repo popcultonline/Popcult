@@ -1,8 +1,23 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Home, MapPin } from "lucide-react";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
+import { brandOpenGraphImages } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Page Not Found",
+  description:
+    "This Pop Cult page was not found. Use the store list or homepage to keep browsing.",
+  openGraph: {
+    title: "Page Not Found | Pop Cult",
+    description:
+      "This Pop Cult page was not found. Use the store list or homepage to keep browsing.",
+    url: "/",
+    images: brandOpenGraphImages,
+  },
+};
 
 export default function NotFound() {
   return (

@@ -3,6 +3,7 @@ import { ArrowRight, Heart, Sparkles, Store } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
+import { brandOpenGraphImages } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     description:
       "Meet Pop Cult / Character World, a regional pop culture retailer built around discovery, fandom, and physical stores.",
     url: "/about",
+    images: brandOpenGraphImages,
   },
 };
 

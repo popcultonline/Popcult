@@ -61,7 +61,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-5 text-xs text-white/40 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
           <p>Pop Cult, with select Character World locations</p>
-          <p>Hours and inventory vary by location.</p>
+          <p>Store schedules and inventory can differ by location.</p>
         </div>
       </div>
     </footer>

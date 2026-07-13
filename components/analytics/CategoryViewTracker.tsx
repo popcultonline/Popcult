@@ -20,7 +20,7 @@ export function CategoryViewTracker({ category }: { category: string }) {
         viewedCategories.add(category);
         trackEvent(
           "category_view",
-          { category },
+          { category, placement: "category_grid" },
           { dedupeKey: category }
         );
         observer.disconnect();

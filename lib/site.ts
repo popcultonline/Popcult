@@ -1,6 +1,14 @@
 export const siteName = "Pop Cult";
 export const siteDescription =
   "A regional pop culture retailer for anime, Sanrio, Gundam, figures, plush, collectibles, gifts, and more.";
+export const productionSiteUrl = "https://popcult.online";
+export const siteLastReviewed = "2026-07-13";
+export const brandOpenGraphImages = [
+  {
+    url: "/brand/popcult-logo-final.jpg",
+    alt: "Pop Cult logo",
+  },
+];
 
 export const siteRoutes = [
   { path: "/", priority: 1 },
@@ -10,16 +18,12 @@ export const siteRoutes = [
 ] as const;
 
 export function getSiteUrl() {
-  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL;
-
-  if (!configuredUrl) {
-    return "http://localhost:3000";
-  }
+  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL ?? productionSiteUrl;
 
   try {
     return new URL(configuredUrl).origin;
   } catch {
-    return "http://localhost:3000";
+    return productionSiteUrl;
   }
 }
 

@@ -5,7 +5,12 @@ import "./globals.css";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
-import { getSiteUrl, siteDescription, siteName } from "@/lib/site";
+import {
+  brandOpenGraphImages,
+  getSiteUrl,
+  siteDescription,
+  siteName,
+} from "@/lib/site";
 
 const siteUrl = getSiteUrl();
 
@@ -24,12 +29,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     url: "/",
     siteName,
-    images: [
-      {
-        url: "/brand/popcult-logo-final.jpg",
-        alt: "Pop Cult logo",
-      },
-    ],
+    images: brandOpenGraphImages,
     type: "website",
   },
   twitter: {

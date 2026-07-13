@@ -11,7 +11,7 @@ export function ContactCTA() {
             Need a hand?
           </p>
           <h2 className="mt-3 max-w-2xl text-3xl font-black tracking-[-0.045em] sm:text-5xl">
-            Store question, partnership, or just want to say hello?
+            Store question, shopping question, or want email updates?
           </h2>
         </div>
         <Link

@@ -5,6 +5,7 @@ import { locationCount, stateCount, stateGroups } from "@/data/locations";
 import { LocationCard } from "@/components/cards/LocationCard";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
+import { brandOpenGraphImages } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Locations",
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     description:
       "Find 11 Pop Cult and Character World stores across Florida, Georgia, South Carolina, and Tennessee.",
     url: "/locations",
+    images: brandOpenGraphImages,
   },
 };
 

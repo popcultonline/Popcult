@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, ExternalLink, MapPin, Phone } from "lucide-react";
 import {
+  getAddressText,
   getDirectionsUrl,
   getLocationPath,
+  getPhoneContactType,
+  getPhoneHref,
   type StoreLocation,
 } from "@/data/locations";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +14,12 @@ import { TrackedLink } from "@/components/analytics/TrackedLink";
 export function LocationCard({ location }: { location: StoreLocation }) {
   const directionsUrl = getDirectionsUrl(location);
   const locationPath = getLocationPath(location);
-  const phoneHref = `tel:${location.phone.replace(/[^\d+]/g, "")}`;
+  const phoneHref = getPhoneHref(location);
+  const phoneContactType = getPhoneContactType(location);
+  const phoneLabel =
+    location.phone.type === "direct"
+      ? location.phone.number
+      : `${location.phone.label}: ${location.phone.number}`;
 
   return (
     <Card className="gap-0 rounded-[1.75rem] border-0 py-0 shadow-none ring-1 ring-black/10">
@@ -39,7 +47,7 @@ export function LocationCard({ location }: { location: StoreLocation }) {
         <address className="mt-5 space-y-3 not-italic">
           <div className="flex items-start gap-3 text-sm leading-6 text-muted-foreground">
             <MapPin aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
-            <span>{location.address}</span>
+            <span>{getAddressText(location)}</span>
           </div>
           <div className="flex items-center gap-3 text-sm">
             <Phone aria-hidden="true" className="size-4 shrink-0 text-muted-foreground" />
@@ -50,10 +58,12 @@ export function LocationCard({ location }: { location: StoreLocation }) {
                 location_id: location.id,
                 location_city: location.city,
                 state: location.stateCode,
+                placement: "location_card",
+                contact_type: phoneContactType,
               }}
               className="font-bold underline-offset-4 hover:underline"
             >
-              {location.phone}
+              {phoneLabel}
             </TrackedLink>
           </div>
         </address>
@@ -77,17 +87,14 @@ export function LocationCard({ location }: { location: StoreLocation }) {
                 location_id: location.id,
                 location_city: location.city,
                 state: location.stateCode,
+                placement: "location_card",
               }}
               className="inline-flex items-center gap-2 rounded-full bg-[#ffe200] px-4 py-2.5 text-sm font-black text-black hover:bg-[#f2d600]"
             >
               Get Directions
               <ExternalLink aria-hidden="true" className="size-4" />
             </TrackedLink>
-          ) : (
-            <span className="inline-flex rounded-full border border-black/15 px-4 py-2.5 text-sm font-bold text-muted-foreground">
-              Details coming soon
-            </span>
-          )}
+          ) : null}
         </div>
       </CardContent>
     </Card>
