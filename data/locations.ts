@@ -107,8 +107,8 @@ const hours = {
     ],
     generalNote: generalHoursNote,
   },
-  citrusParkMall: {
-    basis: "provisional-mall",
+  citrusParkStore: {
+    basis: "verified-store",
     rules: [
       {
         days: ["Mo", "Tu", "We", "Th"],
@@ -127,12 +127,11 @@ const hours = {
       {
         days: ["Su"],
         daysLabel: "Sunday",
-        opens: "11:00",
+        opens: "12:00",
         closes: "18:00",
-        label: "11 AM–6 PM",
+        label: "12 PM–6 PM",
       },
     ],
-    provisionalNote: provisionalMallHoursNote,
     generalNote: generalHoursNote,
   },
   monThu10To8FriSat10To9Sun11To6: {
@@ -190,25 +189,24 @@ const hours = {
     provisionalNote: provisionalMallHoursNote,
     generalNote: generalHoursNote,
   },
-  northPointMall: {
-    basis: "provisional-mall",
+  monSat10To8Sun12To6: {
+    basis: "verified-store",
     rules: [
       {
         days: ["Mo", "Tu", "We", "Th", "Fr", "Sa"],
         daysLabel: "Monday–Saturday",
-        opens: "11:00",
+        opens: "10:00",
         closes: "20:00",
-        label: "11 AM–8 PM",
+        label: "10 AM–8 PM",
       },
       {
         days: ["Su"],
         daysLabel: "Sunday",
         opens: "12:00",
-        closes: "19:00",
-        label: "12 PM–7 PM",
+        closes: "18:00",
+        label: "12 PM–6 PM",
       },
     ],
-    provisionalNote: provisionalMallHoursNote,
     generalNote: generalHoursNote,
   },
   greenville: {
@@ -285,27 +283,6 @@ const hours = {
     ],
     generalNote: generalHoursNote,
   },
-  chattanoogaMall: {
-    basis: "provisional-mall",
-    rules: [
-      {
-        days: ["Mo", "Tu", "We", "Th", "Fr", "Sa"],
-        daysLabel: "Monday–Saturday",
-        opens: "10:00",
-        closes: "20:00",
-        label: "10 AM–8 PM",
-      },
-      {
-        days: ["Su"],
-        daysLabel: "Sunday",
-        opens: "12:00",
-        closes: "18:00",
-        label: "12 PM–6 PM",
-      },
-    ],
-    provisionalNote: provisionalMallHoursNote,
-    generalNote: generalHoursNote,
-  },
 } satisfies Record<string, StoreHours>;
 
 export const locations: StoreLocation[] = [
@@ -340,8 +317,6 @@ export const locations: StoreLocation[] = [
     seoDescription:
       "Visit Pop Cult at The Florida Mall in Orlando for anime, collectibles, character goods, gifts, directions, phone, and verified store hours.",
     lastReviewed: "2026-07-13",
-    internalVerificationNote:
-      "Saturday 9 PM closing is treated as the current verified schedule, but can be reconfirmed with the client as a low-priority content check.",
   },
   {
     id: "tampa-citrus-park",
@@ -360,21 +335,19 @@ export const locations: StoreLocation[] = [
       addressCountry: "US",
     },
     phone: {
-      number: "(813) 792-7070",
+      number: "(706) 921-9726",
       label: "Store phone",
       type: "direct",
     },
-    hours: hours.citrusParkMall,
+    hours: hours.citrusParkStore,
     mapsQuery:
       "Pop Cult Citrus Park Town Center, 8021 Citrus Park Town Center Mall, Tampa, FL 33625",
     description:
       "Pop Cult Citrus Park serves the Tampa and Citrus Park area from Citrus Park Town Center. It is a physical retail stop for browsing anime merchandise, Sanrio, Gundam, figures, plush, collectibles, character goods, and gifts. The location is best used for in-store discovery, local questions, and current shopping-center visits.",
     seoTitle: "Pop Cult Citrus Park at Citrus Park Town Center",
     seoDescription:
-      "Visit Pop Cult Citrus Park at Citrus Park Town Center in Tampa for pop culture gifts, collectibles, directions, phone, and regular mall hours.",
+      "Visit Pop Cult Citrus Park at Citrus Park Town Center in Tampa for pop culture gifts, collectibles, directions, phone, and verified store hours.",
     lastReviewed: "2026-07-13",
-    internalVerificationNote:
-      "Regular mall hours are used provisionally until store-specific hours are confirmed. Current phone is (813) 792-7070; client should confirm against previously surfaced (706) 921-9726.",
   },
   {
     id: "clearwater-countryside",
@@ -438,8 +411,6 @@ export const locations: StoreLocation[] = [
     seoDescription:
       "Visit Pop Cult at Brandon Exchange for pop culture gifts, collectibles, directions, phone, and verified store hours in Brandon, Florida.",
     lastReviewed: "2026-07-13",
-    internalVerificationNote:
-      "Current phone follows Brandon Exchange listing. Repository previously listed (813) 643-5528.",
   },
   {
     id: "lutz-tampa-premium-outlets",
@@ -472,7 +443,7 @@ export const locations: StoreLocation[] = [
       "Visit Pop Cult at Tampa Premium Outlets in Lutz for pop culture gifts, collectibles, directions, phone, and regular mall hours.",
     lastReviewed: "2026-07-13",
     internalVerificationNote:
-      "Regular mall hours are used provisionally until store-specific hours are confirmed.",
+      "Uses Tampa Premium Outlets’ regular schedule as the recurring planning basis. One-day closure exceptions are not included in the weekly schedule.",
   },
   {
     id: "alpharetta-north-point",
@@ -494,17 +465,15 @@ export const locations: StoreLocation[] = [
       label: "Store phone",
       type: "direct",
     },
-    hours: hours.northPointMall,
+    hours: hours.monSat10To8Sun12To6,
     mapsQuery:
       "Pop Cult North Point Mall, 1000 North Point Cir #2140, Alpharetta, GA 30022",
     description:
-      "Pop Cult at North Point Mall gives Alpharetta shoppers a regional pop culture store for in-person discovery. Browse categories such as anime merchandise, Sanrio, Gundam, figures, plush, collectibles, character goods, and gifts, with exact inventory varying by visit. Regular mall hours are used as the current planning schedule for this location.",
+      "Pop Cult at North Point Mall gives Alpharetta shoppers a regional pop culture store for in-person discovery. Browse categories such as anime merchandise, Sanrio, Gundam, figures, plush, collectibles, character goods, and gifts, with exact inventory varying by visit. Verified store hours are used as the current planning schedule for this location.",
     seoTitle: "Pop Cult Alpharetta at North Point Mall",
     seoDescription:
-      "Visit Pop Cult at North Point Mall in Alpharetta for pop culture gifts, collectibles, directions, phone, and regular mall hours.",
+      "Visit Pop Cult at North Point Mall in Alpharetta for pop culture gifts, collectibles, directions, phone, and verified store hours.",
     lastReviewed: "2026-07-13",
-    internalVerificationNote:
-      "Regular mall hours are used provisionally until store-specific hours are confirmed.",
   },
   {
     id: "buford-mall-of-georgia",
@@ -537,8 +506,6 @@ export const locations: StoreLocation[] = [
     seoDescription:
       "Visit Character World at Mall of Georgia in Buford for character goods, collectibles, directions, phone, and verified store hours.",
     lastReviewed: "2026-07-13",
-    internalVerificationNote:
-      "Preserve Character World as the public brand unless the client confirms wording such as “A Pop Cult store.”",
   },
   {
     id: "greenville-haywood",
@@ -619,7 +586,7 @@ export const locations: StoreLocation[] = [
       addressCountry: "US",
     },
     phone: {
-      number: "(865) 253-7363",
+      number: "(865) 312-3606",
       label: "Store phone",
       type: "direct",
     },
@@ -634,8 +601,6 @@ export const locations: StoreLocation[] = [
     seoDescription:
       "Visit Pop Cult at West Town Mall in Knoxville for pop culture gifts, collectibles, directions, phone, and verified store hours.",
     lastReviewed: "2026-07-13",
-    internalVerificationNote:
-      "Repository previously listed (865) 253-7228; current working phone follows the official West Town Mall listing.",
   },
   {
     id: "chattanooga-hamilton-place",
@@ -653,21 +618,19 @@ export const locations: StoreLocation[] = [
       addressCountry: "US",
     },
     phone: {
-      number: "(423) 855-5282",
-      label: "Hamilton Place information",
-      type: "mall-info",
+      number: "(423) 894-4184",
+      label: "Store phone",
+      type: "direct",
     },
-    hours: hours.chattanoogaMall,
+    hours: hours.monSat10To8Sun12To6,
     mapsQuery:
       "Pop Cult Hamilton Place, 2100 Hamilton Place Blvd, Chattanooga, TN 37421",
     description:
-      "Pop Cult at Hamilton Place gives Chattanooga shoppers an in-person place to browse pop culture and character-focused retail categories. Visit for discovery across anime merchandise, Sanrio, Gundam, figures, plush, collectibles, character goods, and gifts, with exact selection varying by visit. Regular mall hours are used as the current planning schedule.",
+      "Pop Cult at Hamilton Place gives Chattanooga shoppers an in-person place to browse pop culture and character-focused retail categories. Visit for discovery across anime merchandise, Sanrio, Gundam, figures, plush, collectibles, character goods, and gifts, with exact selection varying by visit. Verified store hours are used as the current planning schedule.",
     seoTitle: "Pop Cult Chattanooga at Hamilton Place",
     seoDescription:
-      "Visit Pop Cult at Hamilton Place in Chattanooga for pop culture gifts, collectibles, directions, mall information phone, and regular mall hours.",
+      "Visit Pop Cult at Hamilton Place in Chattanooga for pop culture gifts, collectibles, directions, phone, and verified store hours.",
     lastReviewed: "2026-07-13",
-    internalVerificationNote:
-      "Phone is the published Hamilton Place mall information number, not a confirmed direct Pop Cult number.",
   },
 ];
 

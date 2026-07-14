@@ -10,14 +10,14 @@ import { brandOpenGraphImages } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Find the right Pop Cult or Character World store for directions, phone numbers, hours, shopping questions, and email updates.",
+    "Find Pop Cult and Character World store contacts for directions, phone numbers, hours, shopping questions, business inquiries, and email updates.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
     title: "Contact Pop Cult",
     description:
-      "Find the right Pop Cult or Character World store for directions, phone numbers, hours, shopping questions, and email updates.",
+      "Find Pop Cult and Character World store contacts for directions, phone numbers, hours, shopping questions, business inquiries, and email updates.",
     url: "/contact",
     images: brandOpenGraphImages,
   },
@@ -42,11 +42,21 @@ const contactReasons = [
   },
   {
     icon: Mail,
+    title: "General and business inquiries",
+    text: "For partnerships, vendors, leasing, and other business questions. Store-specific questions should go to your nearest store. Response times may vary.",
+    link: "mailto:popcultatlanta@gmail.com",
+    label: "popcultatlanta@gmail.com",
+    ariaLabel:
+      "Email Pop Cult for general and business inquiries at popcultatlanta@gmail.com",
+    color: "bg-[#ffe200]",
+  },
+  {
+    icon: Mail,
     title: "Email updates",
     text: "Join the Pop Cult email list for new finds, store updates, and events sent occasionally.",
     link: "#newsletter",
     label: "Join the email list",
-    color: "bg-[#ffe200]",
+    color: "bg-white text-primary ring-1 ring-black/10",
   },
 ];
 
@@ -71,9 +81,9 @@ export default function ContactPage() {
 
       <div className="bg-[#eee8f6]">
         <Section>
-          <div className="grid gap-5 lg:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
             {contactReasons.map(
-              ({ icon: Icon, title, text, link, label, color }) => (
+              ({ icon: Icon, title, text, link, label, ariaLabel, color }) => (
                 <article
                   key={title}
                   className="flex min-h-80 flex-col rounded-[2rem] bg-white p-7 ring-1 ring-black/5"
@@ -90,13 +100,24 @@ export default function ContactPage() {
                     {text}
                   </p>
                   {link && label ? (
-                    <Link
-                      href={link}
-                      className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-bold underline-offset-4 hover:underline"
-                    >
-                      {label}
-                      <ArrowRight aria-hidden="true" className="size-4" />
-                    </Link>
+                    link.startsWith("mailto:") ? (
+                      <a
+                        href={link}
+                        aria-label={ariaLabel}
+                        className="mt-auto inline-flex items-center gap-2 break-all pt-8 text-sm font-bold underline-offset-4 hover:underline"
+                      >
+                        {label}
+                        <ArrowRight aria-hidden="true" className="size-4 shrink-0" />
+                      </a>
+                    ) : (
+                      <Link
+                        href={link}
+                        className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-bold underline-offset-4 hover:underline"
+                      >
+                        {label}
+                        <ArrowRight aria-hidden="true" className="size-4" />
+                      </Link>
+                    )
                   ) : null}
                 </article>
               )

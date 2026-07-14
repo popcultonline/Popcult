@@ -111,7 +111,7 @@ This checklist reflects the current production state for `https://popcult.online
   - `state`
   - `placement`
   - `contact_type`
-- Confirm Chattanooga phone clicks use `contact_type: mall_information`.
+- Confirm each current store phone click uses `contact_type: store_phone`.
 
 ### Mailchimp
 
@@ -132,19 +132,20 @@ This checklist reflects the current production state for `https://popcult.online
 - Keyboard-test the header, mobile menu, hero carousel controls, category cards, location cards, contact links, and newsletter form.
 - Confirm visible focus states are easy to see.
 - Confirm every store page shows either `Store Hours` or `Regular Mall Hours`.
-- Confirm provisional locations still show `Regular Mall Hours` until the client confirms store-specific hours.
+- Confirm Lutz still shows `Regular Mall Hours` because it uses Tampa Premium Outlets’ recurring mall schedule.
 - Confirm no public copy says “coming soon,” “TBD,” “placeholder,” or equivalent unfinished language.
 
-### Current client data confirmations
+### Current client-confirmed store data
 
-- Knoxville phone conflict: current site uses `(865) 253-7363`; previous repository value was `(865) 253-7228`.
-- Chattanooga direct-phone uncertainty: current site labels `(423) 855-5282` as `Hamilton Place information`, not a direct store phone.
-- Citrus Park phone history: current site uses `(813) 792-7070`; previously surfaced conflicting value was `(706) 921-9726`.
-- Brandon phone change: current site uses `(813) 699-2842`; previous repository value was `(813) 643-5528`.
-- Provisional hours remain for Citrus Park, Lutz, Alpharetta, and Chattanooga.
-- Orlando Saturday closing time is currently listed as `9 PM`; reconfirm if the client wants extra certainty.
-- No general business-inquiry email is published because no verified destination has been provided.
-- Character World at Mall of Georgia is preserved as `Character World`; do not publicly call it “A Pop Cult store” unless the client confirms that wording.
+- Knoxville direct store phone is `(865) 312-3606`.
+- Chattanooga direct store phone is `(423) 894-4184`.
+- Citrus Park direct store phone is `(706) 921-9726`; public name remains `Pop Cult Citrus Park`.
+- Brandon direct store phone is `(813) 699-2842`.
+- Citrus Park, Alpharetta, and Chattanooga use verified `Store Hours`.
+- Lutz uses Tampa Premium Outlets’ recurring schedule and remains labeled `Regular Mall Hours`; one-day closure exceptions are not part of the recurring weekly schedule.
+- Orlando keeps Saturday closing at `9 PM` in the verified weekly schedule.
+- General and business inquiries use `popcultatlanta@gmail.com`; store-specific questions should still go to the nearest store.
+- Character World at Mall of Georgia is preserved as `Character World at Mall of Georgia`.
 
 ## Monitor after launch
 
@@ -162,9 +163,8 @@ This checklist reflects the current production state for `https://popcult.online
 
 ## Future optional work
 
-- Add a verified business-inquiry email or contact workflow if the client provides one.
-- Add confirmed direct Chattanooga phone if available.
-- Convert provisional mall hours to verified store hours after client confirmation.
+- Add a richer contact workflow if the client wants routing beyond the verified general/business email.
+- Change Lutz from `Regular Mall Hours` only if the client later confirms store-specific hours.
 - Add store-specific images only when real approved photography is available.
 - Add Search Console HTML verification metadata only if DNS verification becomes insufficient.
 - Add richer location content if the client provides confirmed suite numbers, holiday hours, or store-specific services.

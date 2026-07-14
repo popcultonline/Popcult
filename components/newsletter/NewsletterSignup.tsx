@@ -108,7 +108,7 @@ export function NewsletterSignup({
             id={`${formId}-heading`}
             className="mt-5 text-4xl font-black leading-none tracking-[-0.055em] sm:text-5xl"
           >
-            New finds, store updates, and events—sent occasionally.
+            New finds, store updates, and events sent occasionally.
           </h2>
           <p className="mt-5 max-w-xl text-sm leading-6 text-white/65 sm:text-base">
             Join the Pop Cult email list for store news and occasional local
