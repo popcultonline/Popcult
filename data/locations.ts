@@ -46,6 +46,9 @@ export type StoreLocation = {
   phone: StorePhone;
   hours: StoreHours;
   mapsQuery: string;
+  storefrontImage: string;
+  storefrontAlt: string;
+  storefrontPosition?: string;
   bestEntrance?: string;
   inMallLocation?: string;
   description: string;
@@ -55,7 +58,7 @@ export type StoreLocation = {
   internalVerificationNote?: string;
 };
 
-const expectedLocationCount = 11;
+const expectedLocationCount = 10;
 const expectedStateCount = 4;
 const validStateCodes = new Set<StateCode>(["FL", "GA", "SC", "TN"]);
 const validDayCodes = new Set<DayCode>(["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"]);
@@ -65,8 +68,6 @@ const validHoursBases = new Set<HoursBasis>([
 ]);
 const generalHoursNote =
   "Hours may vary during holidays and special events. Call ahead before making a special trip.";
-const provisionalMallHoursNote =
-  "Pop Cult generally follows the shopping center’s regular hours. Individual store and holiday hours may vary.";
 
 const stateSlugsByCode: Record<StateCode, string> = {
   FL: "florida",
@@ -159,34 +160,6 @@ const hours = {
         label: "11 AM–6 PM",
       },
     ],
-    generalNote: generalHoursNote,
-  },
-  tampaPremiumOutletsMall: {
-    basis: "provisional-mall",
-    rules: [
-      {
-        days: ["Mo", "Tu", "We", "Th"],
-        daysLabel: "Monday–Thursday",
-        opens: "10:00",
-        closes: "20:00",
-        label: "10 AM–8 PM",
-      },
-      {
-        days: ["Fr", "Sa"],
-        daysLabel: "Friday–Saturday",
-        opens: "10:00",
-        closes: "21:00",
-        label: "10 AM–9 PM",
-      },
-      {
-        days: ["Su"],
-        daysLabel: "Sunday",
-        opens: "11:00",
-        closes: "18:00",
-        label: "11 AM–6 PM",
-      },
-    ],
-    provisionalNote: provisionalMallHoursNote,
     generalNote: generalHoursNote,
   },
   monSat10To8Sun12To6: {
@@ -309,6 +282,9 @@ export const locations: StoreLocation[] = [
     hours: hours.monThu10To8FriSat10To9Sun11To7,
     mapsQuery:
       "Pop Cult The Florida Mall, 8001 S Orange Blossom Trl, Orlando, FL 32809",
+    storefrontImage: "/images/storefronts/orlando-new.jpeg",
+    storefrontAlt: "Storefront of Pop Cult at The Florida Mall in Orlando",
+    storefrontPosition: "center center",
     bestEntrance: "The Plaza Entrance",
     inMallLocation: "JCPenney wing, near JCPenney",
     description:
@@ -342,6 +318,10 @@ export const locations: StoreLocation[] = [
     hours: hours.citrusParkStore,
     mapsQuery:
       "Pop Cult Citrus Park Town Center, 8021 Citrus Park Town Center Mall, Tampa, FL 33625",
+    storefrontImage: "/images/storefronts/citrus-park.webp",
+    storefrontAlt:
+      "Storefront of Pop Cult Citrus Park at Citrus Park Town Center in Tampa",
+    storefrontPosition: "center center",
     description:
       "Pop Cult Citrus Park serves the Tampa and Citrus Park area from Citrus Park Town Center. It is a physical retail stop for browsing anime merchandise, Sanrio, Gundam, figures, plush, collectibles, character goods, and gifts. The location is best used for in-store discovery, local questions, and current shopping-center visits.",
     seoTitle: "Pop Cult Citrus Park at Citrus Park Town Center",
@@ -373,6 +353,10 @@ export const locations: StoreLocation[] = [
     hours: hours.monThu10To8FriSat10To9Sun11To7,
     mapsQuery:
       "Pop Cult Countryside Mall, 27001 US-19 Ste 1029, Clearwater, FL 33761",
+    storefrontImage: "/images/storefronts/clearwater-countryside.webp",
+    storefrontAlt:
+      "Storefront of Pop Cult at Countryside Mall in Clearwater",
+    storefrontPosition: "center center",
     inMallLocation:
       "First level, near JCPenney; also listed between Claire’s and Great American Cookie",
     description:
@@ -405,45 +389,15 @@ export const locations: StoreLocation[] = [
     hours: hours.monThu10To8FriSat10To9Sun11To6,
     mapsQuery:
       "Pop Cult Brandon Exchange, 459 Brandon Town Center Dr, Brandon, FL 33511",
+    storefrontImage: "/images/storefronts/brandon-new.jpeg",
+    storefrontAlt: "Storefront of Pop Cult at Brandon Exchange in Brandon",
+    storefrontPosition: "center center",
     description:
       "Pop Cult at Brandon Exchange gives Brandon shoppers a local place to browse pop culture merchandise, character goods, collectibles, plush, figures, Gundam, Sanrio, anime-related finds, and gifts. The store page is intended for practical visit planning: address, phone, directions, and verified weekly hours before heading to the shopping center.",
     seoTitle: "Pop Cult Brandon at Brandon Exchange",
     seoDescription:
       "Visit Pop Cult at Brandon Exchange for pop culture gifts, collectibles, directions, phone, and verified store hours in Brandon, Florida.",
     lastReviewed: "2026-07-13",
-  },
-  {
-    id: "lutz-tampa-premium-outlets",
-    officialName: "Pop Cult at Tampa Premium Outlets",
-    city: "Lutz",
-    area: "Tampa",
-    state: "Florida",
-    stateCode: "FL",
-    brand: "Pop Cult",
-    mall: "Tampa Premium Outlets",
-    address: {
-      streetAddress: "2398 Grand Cypress Dr STE 418",
-      addressLocality: "Lutz",
-      addressRegion: "FL",
-      postalCode: "33559",
-      addressCountry: "US",
-    },
-    phone: {
-      number: "(813) 948-6610",
-      label: "Store phone",
-      type: "direct",
-    },
-    hours: hours.tampaPremiumOutletsMall,
-    mapsQuery:
-      "Pop Cult Tampa Premium Outlets, 2398 Grand Cypress Dr STE 418, Lutz, FL 33559",
-    description:
-      "Pop Cult at Tampa Premium Outlets brings the Pop Cult browsing experience to Lutz and the greater Tampa area. Visit in person for a specialty retail mix centered on pop culture, anime merchandise, Sanrio, Gundam, figures, plush, collectibles, character goods, and gifts. Regular outlet hours are used as the current planning schedule.",
-    seoTitle: "Pop Cult Lutz at Tampa Premium Outlets",
-    seoDescription:
-      "Visit Pop Cult at Tampa Premium Outlets in Lutz for pop culture gifts, collectibles, directions, phone, and regular mall hours.",
-    lastReviewed: "2026-07-13",
-    internalVerificationNote:
-      "Uses Tampa Premium Outlets’ regular schedule as the recurring planning basis. One-day closure exceptions are not included in the weekly schedule.",
   },
   {
     id: "alpharetta-north-point",
@@ -468,6 +422,9 @@ export const locations: StoreLocation[] = [
     hours: hours.monSat10To8Sun12To6,
     mapsQuery:
       "Pop Cult North Point Mall, 1000 North Point Cir #2140, Alpharetta, GA 30022",
+    storefrontImage: "/images/storefronts/alpharetta.webp",
+    storefrontAlt: "Storefront of Pop Cult at North Point Mall in Alpharetta",
+    storefrontPosition: "center center",
     description:
       "Pop Cult at North Point Mall gives Alpharetta shoppers a regional pop culture store for in-person discovery. Browse categories such as anime merchandise, Sanrio, Gundam, figures, plush, collectibles, character goods, and gifts, with exact inventory varying by visit. Verified store hours are used as the current planning schedule for this location.",
     seoTitle: "Pop Cult Alpharetta at North Point Mall",
@@ -498,6 +455,10 @@ export const locations: StoreLocation[] = [
     hours: hours.monThu10To8FriSat10To9Sun11To7,
     mapsQuery:
       "Character World Mall of Georgia, 3333 Buford Dr, Buford, GA 30519",
+    storefrontImage: "/images/storefronts/buford-character-world.webp",
+    storefrontAlt:
+      "Storefront of Character World at Mall of Georgia in Buford",
+    storefrontPosition: "center center",
     bestEntrance: "Entrance near Savvi Formalwear",
     inMallLocation: "Second level / upper level near Von Maur",
     description:
@@ -530,6 +491,9 @@ export const locations: StoreLocation[] = [
     hours: hours.greenville,
     mapsQuery:
       "Pop Cult Haywood Mall, 700 Haywood Rd #1052A, Greenville, SC 29607",
+    storefrontImage: "/images/storefronts/greenville-new.jpeg",
+    storefrontAlt: "Storefront of Pop Cult at Haywood Mall in Greenville",
+    storefrontPosition: "center 25%",
     bestEntrance: "Belk",
     inMallLocation: "Lower level, Belk Court",
     description:
@@ -561,6 +525,9 @@ export const locations: StoreLocation[] = [
     },
     hours: hours.nashville,
     mapsQuery: "Pop Cult Opry Mills, 433 Opry Mills Dr, Nashville, TN 37214",
+    storefrontImage: "/images/storefronts/nashville.webp",
+    storefrontAlt: "Storefront of Pop Cult at Opry Mills in Nashville",
+    storefrontPosition: "center center",
     bestEntrance: "Entry 3",
     inMallLocation: "Near Rainforest Cafe, across from Five Below",
     description:
@@ -593,6 +560,9 @@ export const locations: StoreLocation[] = [
     hours: hours.knoxville,
     mapsQuery:
       "Pop Cult West Town Mall, 7600 Kingston Pike, Knoxville, TN 37919",
+    storefrontImage: "/images/storefronts/knoxville.webp",
+    storefrontAlt: "Storefront of Pop Cult at West Town Mall in Knoxville",
+    storefrontPosition: "center center",
     bestEntrance: "Parking garage",
     inMallLocation: "Lower level, next to Rack Room Shoes",
     description:
@@ -625,6 +595,9 @@ export const locations: StoreLocation[] = [
     hours: hours.monSat10To8Sun12To6,
     mapsQuery:
       "Pop Cult Hamilton Place, 2100 Hamilton Place Blvd, Chattanooga, TN 37421",
+    storefrontImage: "/images/storefronts/chattanooga-new.jpeg",
+    storefrontAlt: "Storefront of Pop Cult at Hamilton Place in Chattanooga",
+    storefrontPosition: "center center",
     description:
       "Pop Cult at Hamilton Place gives Chattanooga shoppers an in-person place to browse pop culture and character-focused retail categories. Visit for discovery across anime merchandise, Sanrio, Gundam, figures, plush, collectibles, character goods, and gifts, with exact selection varying by visit. Verified store hours are used as the current planning schedule.",
     seoTitle: "Pop Cult Chattanooga at Hamilton Place",
@@ -764,6 +737,7 @@ export function getLocationStructuredData(location: StoreLocation, url: string) 
       postalCode: location.address.postalCode,
       addressCountry: location.address.addressCountry,
     },
+    image: new URL(location.storefrontImage, url).toString(),
     ...(location.phone.type === "direct" ? { telephone: location.phone.number } : {}),
     openingHoursSpecification: getOpeningHoursSpecification(location),
   };
@@ -837,6 +811,11 @@ function validateLocationData() {
     "SEO title",
     errors
   );
+  assertUnique(
+    locations.map((location) => location.storefrontImage),
+    "storefront image",
+    errors
+  );
 
   for (const location of locations) {
     const requiredValues = {
@@ -852,6 +831,8 @@ function validateLocationData() {
       addressRegion: location.address.addressRegion,
       postalCode: location.address.postalCode,
       mapsQuery: location.mapsQuery,
+      storefrontImage: location.storefrontImage,
+      storefrontAlt: location.storefrontAlt,
       phoneNumber: location.phone.number,
       phoneLabel: location.phone.label,
       description: location.description,
@@ -877,6 +858,14 @@ function validateLocationData() {
 
     if (location.address.addressRegion !== location.stateCode) {
       errors.push(`Address region mismatch for ${location.id}`);
+    }
+
+    if (!location.storefrontImage.startsWith("/images/storefronts/")) {
+      errors.push(`Invalid storefront image path for ${location.id}`);
+    }
+
+    if (!/\.(webp|jpeg)$/.test(location.storefrontImage)) {
+      errors.push(`Storefront image must be WebP or JPEG for ${location.id}`);
     }
 
     if (!/^\(\d{3}\) \d{3}-\d{4}$/.test(location.phone.number)) {

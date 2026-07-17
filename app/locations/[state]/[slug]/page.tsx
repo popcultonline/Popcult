@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -49,6 +50,11 @@ export async function generateMetadata({
     };
   }
 
+  const storefrontImage = {
+    url: getAbsoluteUrl(location.storefrontImage),
+    alt: location.storefrontAlt,
+  };
+
   return {
     title: location.seoTitle,
     description: location.seoDescription,
@@ -59,7 +65,13 @@ export async function generateMetadata({
       title: location.seoTitle,
       description: location.seoDescription,
       url: getLocationPath(location),
-      images: brandOpenGraphImages,
+      images: [storefrontImage, ...brandOpenGraphImages],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: location.seoTitle,
+      description: location.seoDescription,
+      images: [getAbsoluteUrl(location.storefrontImage)],
     },
   };
 }
@@ -121,67 +133,83 @@ export default async function LocationDetailPage({ params }: LocationPageProps) 
 
       <div className="bg-[#eee8f6]">
         <Section>
-          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
-            <article className="rounded-[2rem] bg-[#171717] p-7 text-white shadow-[7px_7px_0_#ffe200] sm:p-8">
-              <Store aria-hidden="true" className="size-8 text-[#ffe200]" />
-              <h2 className="mt-8 text-3xl font-black tracking-[-0.045em]">
-                Store details
-              </h2>
-              <dl className="mt-6 space-y-5 text-sm">
-                <div>
-                  <dt className="font-black uppercase tracking-[0.14em] text-white/45">
-                    Brand
-                  </dt>
-                  <dd className="mt-1 text-lg font-black">{location.brand}</dd>
-                </div>
-                <div>
-                  <dt className="font-black uppercase tracking-[0.14em] text-white/45">
-                    Location
-                  </dt>
-                  <dd className="mt-1 text-lg font-black">{location.mall}</dd>
-                </div>
-                <div>
-                  <dt className="font-black uppercase tracking-[0.14em] text-white/45">
-                    City
-                  </dt>
-                  <dd className="mt-1 text-lg font-black">
-                    {location.city}, {location.stateCode}
-                  </dd>
-                </div>
-                {location.bestEntrance ? (
-                  <div>
-                    <dt className="font-black uppercase tracking-[0.14em] text-white/45">
-                      Best entrance
-                    </dt>
-                    <dd className="mt-1 text-lg font-black">
-                      {location.bestEntrance}
-                    </dd>
-                  </div>
-                ) : null}
-                {location.inMallLocation ? (
-                  <div>
-                    <dt className="font-black uppercase tracking-[0.14em] text-white/45">
-                      In the mall
-                    </dt>
-                    <dd className="mt-1 text-lg font-black">
-                      {location.inMallLocation}
-                    </dd>
-                  </div>
-                ) : null}
-                <div>
-                  <dt className="font-black uppercase tracking-[0.14em] text-white/45">
-                    Schedule source
-                  </dt>
-                  <dd className="mt-1 text-lg font-black">
-                    {location.hours.basis === "verified-store"
-                      ? "Verified store-specific hours"
-                      : "Regular shopping-center hours"}
-                  </dd>
-                </div>
-              </dl>
-            </article>
+          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-10">
+            <div className="space-y-6 lg:order-2">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-white ring-1 ring-black/10">
+                <Image
+                  src={location.storefrontImage}
+                  alt={location.storefrontAlt}
+                  fill
+                  sizes="(max-width: 1023px) 100vw, 42vw"
+                  className="object-cover"
+                  style={{
+                    objectPosition:
+                      location.storefrontPosition ?? "center center",
+                  }}
+                />
+              </div>
 
-            <div className="space-y-6">
+              <article className="rounded-[2rem] bg-[#171717] p-7 text-white shadow-[7px_7px_0_#ffe200] sm:p-8">
+                <Store aria-hidden="true" className="size-8 text-[#ffe200]" />
+                <h2 className="mt-8 text-3xl font-black tracking-[-0.045em]">
+                  Store details
+                </h2>
+                <dl className="mt-6 space-y-5 text-sm">
+                  <div>
+                    <dt className="font-black uppercase tracking-[0.14em] text-white/45">
+                      Brand
+                    </dt>
+                    <dd className="mt-1 text-lg font-black">{location.brand}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-black uppercase tracking-[0.14em] text-white/45">
+                      Location
+                    </dt>
+                    <dd className="mt-1 text-lg font-black">{location.mall}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-black uppercase tracking-[0.14em] text-white/45">
+                      City
+                    </dt>
+                    <dd className="mt-1 text-lg font-black">
+                      {location.city}, {location.stateCode}
+                    </dd>
+                  </div>
+                  {location.bestEntrance ? (
+                    <div>
+                      <dt className="font-black uppercase tracking-[0.14em] text-white/45">
+                        Best entrance
+                      </dt>
+                      <dd className="mt-1 text-lg font-black">
+                        {location.bestEntrance}
+                      </dd>
+                    </div>
+                  ) : null}
+                  {location.inMallLocation ? (
+                    <div>
+                      <dt className="font-black uppercase tracking-[0.14em] text-white/45">
+                        In the mall
+                      </dt>
+                      <dd className="mt-1 text-lg font-black">
+                        {location.inMallLocation}
+                      </dd>
+                    </div>
+                  ) : null}
+                  <div>
+                    <dt className="font-black uppercase tracking-[0.14em] text-white/45">
+                      Schedule source
+                    </dt>
+                    <dd className="mt-1 text-lg font-black">
+                      {location.hours.basis === "verified-store"
+                        ? "Verified store-specific hours"
+                        : "Regular shopping-center hours"}
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+            </div>
+
+            <div className="space-y-6 lg:order-1">
               <article className="rounded-[2rem] bg-white p-7 ring-1 ring-black/10 sm:p-8">
                 <h2 className="text-3xl font-black tracking-[-0.045em]">
                   Visit this store

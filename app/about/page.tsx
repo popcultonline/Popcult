@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
 import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { brandOpenGraphImages } from "@/lib/site";
+import { locationCount, stateCount } from "@/data/locations";
 
 export const metadata: Metadata = {
   title: "About",
@@ -92,9 +93,11 @@ export default function AboutPage() {
             </p>
             <div>
               <p className="text-7xl font-black leading-none tracking-[-0.07em] sm:text-8xl">
-                11
+                {locationCount}
               </p>
-              <p className="mt-2 text-xl font-black">locations across 4 states</p>
+              <p className="mt-2 text-xl font-black">
+                locations across {stateCount} states
+              </p>
             </div>
             <p className="border-t border-white/25 pt-4 text-xs font-black uppercase tracking-[0.18em] text-white/70">
               Florida · Georgia · South Carolina · Tennessee

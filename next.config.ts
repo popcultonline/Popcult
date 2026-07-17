@@ -44,8 +44,13 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/locations/florida/lutz",
+        destination: "/locations/florida",
+        permanent: true,
+      },
+      {
         source: "/locations/florida/tampa-premium-outlets",
-        destination: "/locations/florida/lutz",
+        destination: "/locations/florida",
         permanent: true,
       },
       {

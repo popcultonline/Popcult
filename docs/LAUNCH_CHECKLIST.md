@@ -19,13 +19,14 @@ This checklist reflects the current production state for `https://popcult.online
 - GA4 property and web stream created.
 - Search Console property created and DNS verification added.
 - Mailchimp account, audience, single opt-in behavior, website tags, and API integration configured.
+- Storefront images added for all ten active store pages.
 - Generated routes include:
   - Homepage
   - About
   - Contact
   - Locations index
   - Four state location pages
-  - Eleven canonical store pages
+  - Ten canonical store pages
   - Sitemap
   - Robots
 
@@ -46,7 +47,6 @@ This checklist reflects the current production state for `https://popcult.online
   - `/locations/florida/citrus-park`
   - `/locations/florida/clearwater`
   - `/locations/florida/brandon`
-  - `/locations/florida/lutz`
   - `/locations/georgia/alpharetta`
   - `/locations/georgia/buford`
   - `/locations/south-carolina/greenville`
@@ -65,7 +65,8 @@ This checklist reflects the current production state for `https://popcult.online
   - `/locations/georgia/character-world` → `/locations/georgia/buford`
   - `/locations/georgia/mall-of-georgia` → `/locations/georgia/buford`
   - `/locations/florida/countryside` → `/locations/florida/clearwater`
-  - `/locations/florida/tampa-premium-outlets` → `/locations/florida/lutz`
+  - `/locations/florida/lutz` → `/locations/florida`
+  - `/locations/florida/tampa-premium-outlets` → `/locations/florida`
   - `/locations/georgia/north-point` → `/locations/georgia/alpharetta`
   - `/locations/south-carolina/haywood` → `/locations/south-carolina/greenville`
   - `/locations/tennessee/hamilton-place` → `/locations/tennessee/chattanooga`
@@ -132,7 +133,8 @@ This checklist reflects the current production state for `https://popcult.online
 - Keyboard-test the header, mobile menu, hero carousel controls, category cards, location cards, contact links, and newsletter form.
 - Confirm visible focus states are easy to see.
 - Confirm every store page shows either `Store Hours` or `Regular Mall Hours`.
-- Confirm Lutz still shows `Regular Mall Hours` because it uses Tampa Premium Outlets’ recurring mall schedule.
+- Confirm the active website consistently shows `10 locations` across `4 states`.
+- Confirm old Lutz URLs redirect to `/locations/florida` and are not listed as active stores.
 - Confirm no public copy says “coming soon,” “TBD,” “placeholder,” or equivalent unfinished language.
 
 ### Current client-confirmed store data
@@ -142,7 +144,6 @@ This checklist reflects the current production state for `https://popcult.online
 - Citrus Park direct store phone is `(706) 921-9726`; public name remains `Pop Cult Citrus Park`.
 - Brandon direct store phone is `(813) 699-2842`.
 - Citrus Park, Alpharetta, and Chattanooga use verified `Store Hours`.
-- Lutz uses Tampa Premium Outlets’ recurring schedule and remains labeled `Regular Mall Hours`; one-day closure exceptions are not part of the recurring weekly schedule.
 - Orlando keeps Saturday closing at `9 PM` in the verified weekly schedule.
 - General and business inquiries use `popcultatlanta@gmail.com`; store-specific questions should still go to the nearest store.
 - Character World at Mall of Georgia is preserved as `Character World at Mall of Georgia`.
@@ -164,8 +165,7 @@ This checklist reflects the current production state for `https://popcult.online
 ## Future optional work
 
 - Add a richer contact workflow if the client wants routing beyond the verified general/business email.
-- Change Lutz from `Regular Mall Hours` only if the client later confirms store-specific hours.
-- Add store-specific images only when real approved photography is available.
+- Add refreshed store photography if the client provides newer approved images.
 - Add Search Console HTML verification metadata only if DNS verification becomes insufficient.
 - Add richer location content if the client provides confirmed suite numbers, holiday hours, or store-specific services.
 - Consider a lightweight visual regression check after the design stabilizes.

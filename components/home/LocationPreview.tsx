@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { locations, stateGroups } from "@/data/locations";
+import { locationCount, locations, stateGroups } from "@/data/locations";
 import { LocationCard } from "@/components/cards/LocationCard";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/site/Section";
@@ -26,7 +26,7 @@ export function LocationPreview() {
               Find us nearby
             </p>
             <h2 className="mt-3 text-4xl font-black tracking-[-0.05em] sm:text-5xl">
-              11 locations across the Southeast.
+              {locationCount} locations across the Southeast.
             </h2>
             <p className="mt-5 max-w-lg text-base leading-7 text-muted-foreground">
               Visit Pop Cult and Character World at major mall destinations in

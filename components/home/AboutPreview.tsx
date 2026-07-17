@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Heart, Search, Store } from "lucide-react";
 import { Section } from "@/components/site/Section";
+import { locationCount } from "@/data/locations";
 
 const values = [
   {
@@ -33,8 +34,9 @@ export function AboutPreview() {
               More character. More to discover.
             </h2>
             <p className="mt-6 max-w-xl text-base leading-7 text-white/70">
-              Pop Cult is a regional specialty retailer with 11 locations in
-              major mall destinations across four Southeastern states.
+              Pop Cult is a regional specialty retailer with {locationCount}{" "}
+              locations in major mall destinations across four Southeastern
+              states.
             </p>
             <Link
               href="/about"
