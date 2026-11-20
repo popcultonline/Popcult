@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, HelpCircle, Mail, MapPin } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, Mail, MapPin } from "lucide-react";
 import { Section } from "@/components/site/Section";
-import { TrackedLink } from "@/components/analytics/TrackedLink";
 import { NewsletterSignup } from "@/components/newsletter/NewsletterSignup";
 import { brandOpenGraphImages } from "@/lib/site";
 
@@ -26,19 +24,11 @@ export const metadata: Metadata = {
 const contactReasons = [
   {
     icon: MapPin,
-    title: "Store questions",
-    text: "For hours, directions, phone numbers, and local store questions, start with the locations list.",
+    title: "Store & product questions",
+    text: "Find hours, directions, and phone numbers. For product availability, call your nearest store before making a special trip.",
     link: "/locations",
-    label: "Browse locations",
+    label: "Find your store",
     color: "bg-primary text-white",
-  },
-  {
-    icon: HelpCircle,
-    title: "Shopping questions",
-    text: "Inventory changes by store, so your nearest location is the best current point of contact before a special trip.",
-    link: "/locations",
-    label: "Find nearest store",
-    color: "bg-[#171717] text-[#ffe200]",
   },
   {
     icon: Mail,
@@ -81,7 +71,7 @@ export default function ContactPage() {
 
       <div className="bg-[#eee8f6]">
         <Section>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-5 md:grid-cols-3">
             {contactReasons.map(
               ({ icon: Icon, title, text, link, label, ariaLabel, color }) => (
                 <article
@@ -125,25 +115,6 @@ export default function ContactPage() {
           </div>
         </Section>
       </div>
-
-      <Section className="text-center">
-        <h2 className="mx-auto max-w-3xl text-4xl font-black tracking-[-0.05em] sm:text-5xl">
-          Prefer to visit in person?
-        </h2>
-        <p className="mx-auto mt-5 max-w-xl text-base leading-7 text-muted-foreground">
-          Our stores are the best place to browse current inventory and get
-          local help.
-        </p>
-        <Button asChild size="lg" className="mt-8 rounded-full">
-          <TrackedLink
-            href="/locations"
-            eventName="find_store_click"
-            eventProperties={{ placement: "contact_page" }}
-          >
-            Find a store
-          </TrackedLink>
-        </Button>
-      </Section>
 
       <NewsletterSignup source="contact_page" />
     </>

@@ -1,0 +1,111 @@
+@font-face { font-family: "Berkshire Swash"; src: url("/seasonal/BerkshireSwash-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+.section { width: 100%; max-width: 1160px; margin: 0 auto; padding: 12px 32px 0; scroll-margin-top: 120px; }
+.banner { background: #fff0cc; color: #49225e; border: 1px solid #d9bc94; border-radius: 22px; overflow: hidden; }
+.header { position: relative; padding: 12px 64px 10px; display: grid; grid-template-columns: 1fr auto; column-gap: 24px; align-items: center; background-image: radial-gradient(circle at 7% 25%, #d69bdd 0 2px, transparent 3px), radial-gradient(circle at 94% 80%, #e4a447 0 3px, transparent 4px); }
+.eyebrow { text-transform: uppercase; letter-spacing: .12em; font-size: 9px; font-weight: 800; }
+.header h2 { font-family: "Berkshire Swash", Georgia, serif; font-size: 28px; font-weight: 400; line-height: 1.2; margin-top: 4px; }
+.countdown { grid-column: 2; grid-row: 1 / 3; background: #ffe58b; border-radius: 20px; padding: 7px 12px; font-size: 12px; font-weight: 700; max-width: 240px; }
+.maple { position: absolute; width: 35px; height: 35px; left: 18px; top: 20px; transform: rotate(-20deg); }
+.leaves { position: absolute; width: 37px; height: 37px; right: 14px; top: 18px; transform: rotate(20deg); }
+.offers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; padding: 0 20px; }
+.offer { display: grid; grid-template-columns: 1fr auto; column-gap: 14px; position: relative; background: #492063; color: #fff8e7; padding: 12px 18px; border-radius: 15px; border: 2px solid transparent; box-shadow: 0 3px 0 #49225e14; }
+.offer[data-campaign="saturday"] { background: #efd5f2; color: #49225e; }
+.offer[data-active="true"] { border-color: #713591; box-shadow: 0 0 0 2px #fffaf0; }
+.cardTop { grid-column: 1; display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 3px; }
+.date { display: flex; align-items: baseline; gap: 5px; font-size: 9px; letter-spacing: .06em; }
+.date strong { font-size: 16px; letter-spacing: normal; }
+.status { border: 1px solid currentColor; border-radius: 30px; padding: 3px 8px; font-size: 9px; font-weight: 700; }
+.offer[data-active="true"] .status { background: #ffe200; color: #25182e; border-color: #ffe200; }
+.offer h3 { align-self: end; font-family: "Berkshire Swash", Georgia, serif; font-size: clamp(23px, 2.4vw, 28px); font-weight: 400; line-height: 1.15; }
+.discount { grid-column: 2; grid-row: 1 / 4; align-self: center; font-family: "Berkshire Swash", Georgia, serif; font-size: clamp(46px, 5vw, 58px); line-height: 1; color: #ffe200; white-space: nowrap; }
+.discount span { display: block; text-align: right; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 800; text-transform: uppercase; margin-top: 4px; }
+.offer[data-campaign="saturday"] .discount { color: #612b7e; }
+.storewide { grid-column: 1; font-size: 15px; font-weight: 700; margin-top: 5px; }
+.storewide > span { font-size: 10px; vertical-align: super; }
+.spark { position: absolute; width: 18px; height: 18px; left: 50%; bottom: 16px; color: #ffe58b; }
+.offer[data-campaign="saturday"] .spark { color: #9460ad; }
+.footer { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 10px 20px 12px; }
+.terms { font-size: 12px; line-height: 1.45; max-width: 540px; }
+.cta { display: inline-flex; align-items: center; justify-content: center; gap: 12px; flex-shrink: 0; min-height: 44px; border-radius: 30px; background: #ffe200; color: #171217; padding: 10px 18px; border: 1px solid #171217; box-shadow: 0 2px 0 #171217; font-size: 13px; font-weight: 800; }
+.cta:hover { background: #f2d600; }
+.credit { font-size: 9px; text-align: right; color: #766b7b; margin-top: 6px; }
+.credit a { text-decoration: underline; }
+@media (max-width: 640px) {
+ .section { padding: 12px 16px 0; }
+ .header { display: block; text-align: center; padding: 12px 34px 10px; }
+ .header h2 { font-size: 25px; margin-top: 3px; }
+ .eyebrow { font-size: 8px; letter-spacing: .08em; }
+ .countdown { display: inline-block; font-size: 10px; padding: 4px 9px; margin-top: 6px; }
+ .maple { width: 27px; height: 27px; left: 6px; top: 30px; }
+ .leaves { width: 29px; height: 29px; right: 5px; top: 30px; }
+ .offers { grid-template-columns: 1fr; gap: 8px; padding: 0 12px; }
+ .offer { padding: 9px 14px 12px; column-gap: 10px; }
+ .cardTop { margin-bottom: 4px; }
+ .offer h3 { font-size: 25px; }
+ .discount { font-size: 49px; }
+ .discount span { font-size: 11px; margin-top: 1px; }
+ .storewide { font-size: 13px; margin-top: 3px; }
+ .spark { width: 14px; height: 14px; left: 57%; bottom: 10px; }
+ .footer { flex-wrap: wrap; gap: 9px; padding: 10px 14px 12px; }
+ .terms { font-size: 10px; }
+ .cta { min-height: 40px; padding: 8px 16px; font-size: 12px; }
+ .credit { font-size: 8px; margin-top: 4px; }
+}
+@media (max-height: 600px) and (min-width: 641px) {
+ .section { padding-top: 10px; }
+ .header { padding-top: 10px; padding-bottom: 10px; }
+ .header h2 { font-size: 27px; }
+ .offer { padding-top: 8px; padding-bottom: 10px; }
+ .discount { font-size: 48px; }
+ .footer { padding-top: 9px; padding-bottom: 10px; }
+}
+
+@media (max-width: 640px) and (max-height: 720px), (max-width: 360px) {
+ .section { padding: 8px 10px 0; }
+ .header { padding: 9px 22px 8px; }
+ .header h2 { font-size: 22px; }
+ .eyebrow { font-size: 7px; }
+ .countdown { margin-top: 4px; padding: 3px 8px; }
+ .offers { padding: 0 9px; gap: 6px; }
+ .offer { padding: 7px 10px 9px; }
+ .offer h3 { font-size: 22px; }
+ .discount { font-size: 43px; }
+ .storewide { font-size: 12px; margin-top: 1px; }
+ .cardTop { margin-bottom: 2px; }
+ .footer { padding: 8px 12px 10px; gap: 7px; }
+ .terms { font-size: 10px; line-height: 1.3; }
+ .credit { margin-top: 3px; }
+}
+
+/* Compact offer rows: date, name and eligibility share one clear text column. */
+.offer h3 { align-self: center; }
+.spark { left: 58%; bottom: 12px; width: 14px; height: 14px; }
+@media (max-width: 640px) {
+ .section { padding-top: 8px; }
+ .header { padding-top: 9px; padding-bottom: 8px; }
+ .header h2 { font-size: 23px; }
+ .countdown { margin-top: 4px; }
+ .offers { gap: 8px; }
+ .offer { padding: 10px 13px; column-gap: 12px; }
+ .cardTop { margin-bottom: 3px; }
+ .offer h3 { font-size: 23px; }
+ .discount { font-size: 47px; }
+ .storewide { margin-top: 3px; }
+ .footer { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 13px 12px; }
+ .terms { font-size: 10px; line-height: 1.4; }
+ .cta { min-height: 44px; padding: 8px 12px; gap: 7px; font-size: 11px; }
+ .spark { display: none; }
+}
+@media (max-width: 360px) {
+ .offer { padding: 8px 10px; column-gap: 8px; }
+ .offer h3 { font-size: 21px; }
+ .discount { font-size: 43px; }
+ .footer { gap: 8px; padding: 9px 10px; }
+ .cta { gap: 5px; padding: 8px 10px; }
+}
+
+/* Keep the campaign connected to the main hero without stacking section padding. */
+.section + section > div { padding-top: 24px; }
+@media (max-width: 640px) {
+ .section + section > div { padding-top: 16px; }
+}

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Menu } from "lucide-react";
@@ -54,13 +56,23 @@ export function Header() {
           </TrackedLink>
         </Button>
 
-        <details className="group relative md:hidden">
+        <details className="group relative md:hidden" onKeyDown={(event) => {
+          if (event.key === "Escape") {
+            event.currentTarget.removeAttribute("open");
+            event.currentTarget.querySelector("summary")?.focus();
+          }
+        }}>
           <summary className="grid size-11 cursor-pointer list-none place-items-center rounded-full border border-white/25 bg-white/5 text-white hover:bg-white/10 [&::-webkit-details-marker]:hidden">
             <Menu aria-hidden="true" className="size-5" />
             <span className="sr-only">Open navigation</span>
           </summary>
           <nav
             aria-label="Mobile navigation"
+            onClick={(event) => {
+              if ((event.target as HTMLElement).closest("a")) {
+                event.currentTarget.closest("details")?.removeAttribute("open");
+              }
+            }}
             className="absolute right-0 top-14 w-56 rounded-2xl border border-white/10 bg-[#181818] p-2 text-white shadow-2xl"
           >
             {navigation.map((item) => (

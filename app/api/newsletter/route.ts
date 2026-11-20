@@ -90,7 +90,14 @@ export async function POST(request: Request) {
   let payload: NewsletterRequest;
 
   try {
-    payload = (await request.json()) as NewsletterRequest;
+    const value: unknown = await request.json();
+    if (!value || typeof value !== "object" || Array.isArray(value)) {
+      return jsonResponse(
+        { ok: false, message: "Please submit the form again." },
+        { status: 400 }
+      );
+    }
+    payload = value as NewsletterRequest;
   } catch {
     return jsonResponse(
       { ok: false, message: "Please submit the form again." },
@@ -137,7 +144,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         message:
-          "Newsletter signup is not configured yet. Please add the Mailchimp environment variables in Vercel.",
+          "Email signup is temporarily unavailable. Please try again later.",
       },
       { status: 503 }
     );
